@@ -1,0 +1,59 @@
+{
+  "name": "cv-maker",
+  "description": "Static page with a curriculum vitae in the classic curriculum vitae format that some companies love.",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.x.x",
+    "npm": "7.x.x"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zequez/cv-maker.git"
+  },
+  "keywords": [
+    "cv",
+    "eleventy",
+    "snowpack",
+    "tailwindcss"
+  ],
+  "author": {
+    "name": "Ezequiel Schwartzman",
+    "email": "zequez@gmail.com"
+  },
+  "license": "MIT",
+  "browserslist": [
+    "defaults",
+    "maintained node versions",
+    "> 5%"
+  ],
+  "scripts": {
+    "clean": "rimraf src/_site",
+    "serve": "serve --no-clipboard --listen 8080 dist",
+    "dev": "cross-env NODE_ENV=development run-s clean dev:*",
+    "dev:snowpack": "snowpack dev",
+    "build": "cross-env NODE_ENV=production run-s clean build:*",
+    "build:snowpack": "snowpack build"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@snowpack/plugin-postcss": "^1.2.1",
+    "@snowpack/plugin-run-script": "^2.3.0",
+    "autoprefixer": "^10.2.5",
+    "babel-eslint": "^10.1.0",
+    "browserslist": "^4.16.3",
+    "cross-env": "^7.0.3",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.8",
+    "postcss-cli": "^8.3.1",
+    "rimraf": "^3.0.2",
+    "serve": "^11.3.2",
+    "snowpack": "^3.1.2",
+    "tailwindcss": "^2.0.4"
+  },
+  "dependencies": {
+    "@radishio/tailwindcss-marker": "^1.0.3",
+    "alpinejs": "^2.8.2",
+    "js-yaml": "^4.0.0"
+  }
+}

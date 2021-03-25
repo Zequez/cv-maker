@@ -1,0 +1,66 @@
+---
+layout: layout.liquid
+title: Ezequiel Schwartzman - Curriculum Vitaes
+meta:
+  desc: Ezequiel Schwartzman - Curriculum Vitaes
+---
+
+mixin heading(text)
+  h2.font-semibold.text-2xl.text-center.mb-8= text
+
+- pp = (value, ppClass) => `<p class="${ppClass}">${value.replace(/\n\n/g, `</p><p class="${ppClass}">`)}</p>`
+//- mixin sizedTag(text, size)
+
+- pad = (size, pct) => `padding: ${pct*size}rem .25rem ${pct*size}rem .25rem`
+- sortByConfidence = (data) => Object.fromEntries(Object.entries(data).sort(([k1, v1], [k2, v2]) => v2.confidence - v1.confidence))
+
+main.container.max-w-screen-lg.mx-auto(class="py-8 px-4 md:py-16 md:px-12")
+  header.text-center
+    img.h-48.mx-auto.rounded-full.mb-8(src="/images/avatar_square.jpg")
+    h1.text-5xl.font-semibold.mb-2= cv.name
+    .mb-8.text-gray-500.text-2xl= cv.title
+  .text-justify.mb-8!= pp(cv.summary, "mb-2")
+  +heading("Technical Experience")
+  .text-center.-mt-8.mb-8.text-gray-500
+    div Opacity = current interest in working with
+    div Size = personal confidence level with it
+
+  for sectionContent, sectionName in cv.technicalSummary
+    .flex
+      .flex.justify-left.mb-4
+        .bg-black.text-white.px-2.py-1.rounded-md.uppercase.tracking-wider.font-semibold= sectionName
+      .flex.flex-wrap.justify-end.mb-8.flex-grow.pl-2.-m-1
+        - sortedSectionContent = sortByConfidence(sectionContent)
+        for techInfo, techName in sortedSectionContent
+          .relative
+            button(class=`
+              group flex items-center justify-center text-white h-10 m-1 cursor-pointer
+              focus:outline-none
+              ${!techInfo.active ? "opacity-50" : ""}
+            ` data-fit-popup)
+              span(
+                style=`line-height: 0.25rem; ${pad(1.1, techInfo.confidence)}`
+                class=`
+                bg-teal-400
+                group-focus:ring-4 ring-teal-500
+                ${techInfo.confidence > .5 ? "rounded-md" : "rounded-sm text-xs"}
+                `
+              )=techName
+            div(
+                class=`
+                  z-30 absolute hidden w-80 p-4 bg-white rounded-lg shadow-lg
+                  ring-4 ring-gray-200
+                  focused-sibling:block
+                  pointer-events-none
+                `
+                style="top: 50%; left: 50%; transform: translate(-50%, -50%);"
+              )
+              .font-bold.text-center.mb-4= techName
+              .text-justify= techInfo.summary
+          //- .relative.m-1.flex.items-center.justify-center.p-2.border.text-white(class=`${!techInfo.active ? "opacity-50" : ""}`)
+          //-   //- .z-20.absolute.bg-green-500.bottom-0.rounded-t-md(style=`left: 4px; right: 4px; height: ${techInfo.confidence * 100}%`)
+          //-   span.z-30.relative.bg-green-400.rounded-sm(style=`margin: 0.5rem 0 0.5rem`)= techName
+  +heading("Open Source Experience")
+  +heading("Companies/Clients Experience")
+  +heading("Education")
+  +heading("Links")
