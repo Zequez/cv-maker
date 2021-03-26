@@ -1,6 +1,0 @@
-- pp = (value, ppClass) => `<p class="${ppClass}">${value.replace(/\n\n/g, `</p><p class="${ppClass}">`)}</p>`
-//- mixin sizedTag(text, size)
-
-- pad = (size, pct, base = "0.25rem") => `padding: ${pct*size + 0.1}rem ${base} ${pct*size + 0.1}rem ${base}`
-- sortByConfidence = (data) => Object.fromEntries(Object.entries(data).sort(([k1, v1], [k2, v2]) => v2.confidence - v1.confidence))
-- cleanRepo = (repo) => (Array.isArray(repo) ? repo : [repo]).map((r) => ({label: r.replace(/https:\/\/github\.com\//, 'Github/'), link: r}))
