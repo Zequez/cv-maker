@@ -13,7 +13,9 @@ module.exports = {
       },
     ],
   ],
-  buildOptions: {},
+  buildOptions: {
+    out: "gh-pages",
+  },
   devOptions: {
     open: "none",
     hmrDelay: 100,
