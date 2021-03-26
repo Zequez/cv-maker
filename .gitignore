@@ -3,8 +3,7 @@ node_modules
 web_modules
 
 # build artefacts
-src/_site
-dist
+build
 
 # secrets
 .env
@@ -21,3 +20,5 @@ report.html
 
 # Local Netlify folder
 .netlify
+
+public/**/*.html

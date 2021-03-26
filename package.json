@@ -28,7 +28,7 @@
     "> 5%"
   ],
   "scripts": {
-    "clean": "rimraf src/_site",
+    "clean": "find ./public -type f -name '*.html' -delete",
     "serve": "serve --no-clipboard --listen 8080 dist",
     "dev": "cross-env NODE_ENV=development run-s clean dev:*",
     "dev:snowpack": "snowpack dev",

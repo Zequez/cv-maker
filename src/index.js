@@ -28,7 +28,7 @@ function fitInViewport(element) {
   const bounds = {
     left: 10,
     right: document.documentElement.clientWidth - 10,
-    top: 10,
+    top: 40,
     bottom: document.documentElement.clientHeight - 10,
   };
 

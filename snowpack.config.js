@@ -1,8 +1,7 @@
 module.exports = {
   mount: {
-    "src/_site": { url: "/", static: true },
-    "src/scripts": { url: "/scripts" },
-    "src/styles": { url: "/styles" },
+    src: "/dist",
+    public: "/",
   },
   plugins: [
     "@snowpack/plugin-postcss",
@@ -14,21 +13,14 @@ module.exports = {
       },
     ],
   ],
-  packageOptions: {
-    NODE_ENV: true,
-    source: "remote",
-  },
-  buildOptions: {
-    clean: true,
-    out: "dist",
-  },
+  buildOptions: {},
   devOptions: {
     open: "none",
     hmrDelay: 100,
   },
   optimize: {
-    bundle: true,
-    minify: true,
-    target: "es2020",
+    // bundle: true,
+    // minify: true,
+    // target: "es2020",
   },
 };

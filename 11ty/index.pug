@@ -1,0 +1,168 @@
+---
+layout: layout.liquid
+title: Ezequiel Schwartzman - Curriculum Vitae
+meta:
+  desc: Ezequiel Schwartzman - Curriculum Vitae
+---
+
+include _includes/helpers
+
+mixin heading(text)
+  h2.font-semibold.text-3xl.text-center.my-16.sticky.w-full.bg-white.z-50.top-0= text
+
+main.container.max-w-screen-lg.mx-auto(class="py-8 px-4 md:py-16 md:px-12")
+  .text-center
+    img.h-48.mx-auto.rounded-full.mb-8(src="/avatar_square.jpg")
+  header.text-center.bg-white.z-50
+    h1.font-semibold(class="text-3xl sm:mb-2 sm:text-5xl")= cv.name
+  .text-center.mb-4.text-gray-500.text-2xl= cv.title
+  .text-justify!= pp(cv.summary, "mb-2")
+
+  //- ████████╗███████╗ ██████╗██╗  ██╗
+  //- ╚══██╔══╝██╔════╝██╔════╝██║  ██║
+  //-    ██║   █████╗  ██║     ███████║
+  //-    ██║   ██╔══╝  ██║     ██╔══██║
+  //-    ██║   ███████╗╚██████╗██║  ██║
+  //-    ╚═╝   ╚══════╝ ╚═════╝╚═╝  ╚═╝
+
+  +heading("Technical Experience")
+
+  .text-center.-mt-16.mb-16.text-gray-500
+    div Opacity = current interest in working with
+    div Size = personal confidence level with it
+    div Click/Focus/Hover = details
+
+  for sectionContent, sectionName in cv.technicalSummary
+    .flex.bg-gray-100.mb-8.rounded-r-md
+      .flex.justify-left
+        .bg-black.text-white.px-2.py-1.rounded-md.uppercase.tracking-wider.font-semibold= sectionName
+      .flex.flex-wrap.justify-end.flex-grow.p-2.-m-1
+        - sortedSectionContent = sortByConfidence(sectionContent)
+        for techInfo, techName in sortedSectionContent
+          .relative
+            button(class=`
+              group flex items-center justify-center text-white h-10 m-1 cursor-pointer
+              focus:outline-none
+              ${!techInfo.active ? "opacity-50" : ""}
+            ` data-fit-popup)
+              div(
+                style=`${pad(1, techInfo.confidence)}`
+                class=`
+                h-1
+                bg-teal-400
+                group-focus:ring-4 ring-teal-500
+                flex items-center justify-center
+                ${techInfo.confidence > .5 ? "rounded-md" : "rounded-sm text-xs"}
+                `
+              )
+                span(style="line-height: 0.66rem")=techName
+            div(
+                class=`
+                  z-30 absolute hidden w-80 p-4 bg-white rounded-lg shadow-lg
+                  ring-4 ring-gray-200
+                  focused-sibling:block
+                  pointer-events-none
+                `
+                style="top: 50%; left: 50%; transform: translate(-50%, -50%);"
+              )
+              .font-bold.text-center.mb-4= techName
+              .text-justify= techInfo.summary
+
+  //-  ██████╗ ██████╗ ███████╗███╗   ██╗    ███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗
+  //- ██╔═══██╗██╔══██╗██╔════╝████╗  ██║    ██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝
+  //- ██║   ██║██████╔╝█████╗  ██╔██╗ ██║    ███████╗██║   ██║██║   ██║██████╔╝██║     █████╗
+  //- ██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║    ╚════██║██║   ██║██║   ██║██╔══██╗██║     ██╔══╝
+  //- ╚██████╔╝██║     ███████╗██║ ╚████║    ███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗
+  //-  ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝    ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝
+
+  +heading("Open Source Experience")
+
+
+  for project, projectName in cv.openSource
+    - repos = cleanRepo(project.repo)
+    div.mb-12.bg-gray-100.rounded-b-md
+      .text-white.uppercase.bg-black.rounded-md.p-2.font-semibold.flex.mb-2
+        .flex-grow.font-bold=projectName
+        .italic
+          span= project.from
+          span= project.to ? (project.to === project.from ? '' : `-${project.to}`) : ' (active)'
+      .p-4
+        .flex.flex-wrap.justify-center.mb-2.-m-1
+          for tech in project.technologiesUsed
+            span.text-white.bg-teal-500.p-1.rounded-md.m-1= tech
+        div.mb-2.flex.flex-wrap.-m-1.justify-center
+          for repo of repos
+            a.text-white.bg-teal-500.p-1.rounded-md.m-1.whitespace-nowrap(href=repo.link target="_blank")= repo.label
+        div= project.summary
+
+
+
+
+  //-  ██████╗ ██████╗ ███╗   ███╗██████╗  █████╗ ███╗   ██╗██╗███████╗███████╗
+  //- ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██╔══██╗████╗  ██║██║██╔════╝██╔════╝
+  //- ██║     ██║   ██║██╔████╔██║██████╔╝███████║██╔██╗ ██║██║█████╗  ███████╗
+  //- ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██╔══██║██║╚██╗██║██║██╔══╝  ╚════██║
+  //- ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ██║  ██║██║ ╚████║██║███████╗███████║
+  //-  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚══════╝
+
+  +heading("Companies/Clients Experience")
+
+  mixin companyBlock(company, companyName, depth)
+    div.mb-8.rounded-b-md(class=(depth === 0 ? "bg-gray-100" : (depth === 1 ? "bg-gray-200" : "bg-gray-300")))
+      .text-white.bg-black.rounded-md.p-2.flex.font-semibold
+        .flex-grow
+          span.uppercase= companyName
+          span.opacity-75= company.isClient ? " (client)" : ""
+        .italic= `${company.from} - ${company.to}`
+      .p-4
+        .mb-2
+          span.underline.font-semibold Role:
+          |
+          | #{company.role}
+        .mb-2
+          span.underline.font-semibold Industry:
+          |
+          | #{company.industry}
+        - projects = company.project ? [company.project] : company.projects || []
+        if projects.length
+          .mb-2.underline.font-semibold Projects:
+          ul.ml-8.mb-2
+            for project in projects
+              li.list-disc= project
+
+        .underline.font-semibold.mb-2 Responsibilities:
+        ul.ml-8.mb-2
+          for resp in company.responsibilities
+            li.list-circle= resp
+        .mb-2
+          span.underline.font-semibold Summary:
+          |
+          | #{company.summary}
+
+        if company.subContracted
+          .underline.mr-2.font-semibold.mb-4 Subcontracted:
+          .pl-2(class="sm:pl-8")
+            for subCompany, subCompanyName in company.subContracted
+              +companyBlock(subCompany, subCompanyName, depth + 1)
+
+
+  for company, companyName in cv.professionalExperience
+    +companyBlock(company, companyName, 0)
+
+  //----------------------------------------------------------------------------
+
+  +heading("Education")
+
+  .mb-8
+    for edu in cv.education
+      .text-white.bg-black.rounded-md.p-2.flex.mb-2.flex-wrap
+        .flex-grow.font-semibold= edu.label
+        div= edu.institution
+
+  +heading("Links")
+
+  .mb-8
+    for cert in cv.certifications
+      a.text-white.bg-black.rounded-md.p-2.flex.mb-2.flex-wrap.cursor-pointer(href=cert.link target="_blank")
+        .flex-grow.font-semibold= cert.label
+        div= cert.text

@@ -623,7 +623,7 @@ openSource:
     repo: https://github.com/Zequez/target-shooter
     from: 2011
     to: 2011
-    summary: Little game I made to learn JS canvas and have fun
+    summary: Little game I made to learn JS canvas and have fun.
     technologiesUsed:
       - JavaScript
       - Canvas
@@ -671,6 +671,7 @@ professionalExperience:
     subContracted:
       Home Actions:
         industry: Email Marketing
+        role: Full Stack Web Developer
         project: Newsletter SASS for Real State Agents
         from: Feb 2017
         to: Aug 2018
