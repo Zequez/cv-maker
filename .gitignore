@@ -4,6 +4,7 @@ web_modules
 
 # build artefacts
 build
+gh-pages
 
 # secrets
 .env
