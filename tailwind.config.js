@@ -13,7 +13,7 @@ const focusedSiblingPlugin = plugin(function ({ addVariant, e }) {
 });
 
 module.exports = {
-  purge: ["./src/**/*.html", "./src/**/*.pug", "./src/**/*.md"],
+  purge: ["./11ty/**/*.pug"],
   darkMode: false,
   theme: {
     listStyleType: {

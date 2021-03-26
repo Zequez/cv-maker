@@ -13,7 +13,11 @@ I also added an open source section because curiously "professional experience" 
 cared about companies I worked no but said nothing about open source projects, personal
 projects or private clients from freelance work. So the format had to be extended.
 
-The CV should be accessible at [cv.zequez.space](https://cv.zequez.space)
+The CV for Akvelon should be accessible at [cv.zequez.space/akvelon](https://cv.zequez.space/akvelon)
+
+But then I realized that since I already had all the data now I could make one
+with my own style, so the main CV lives here on the root of the domain: [cv.zequez.space](https://cv.zequez.space)
+
 
 ## Development
 
@@ -28,3 +32,21 @@ yarn build
 ```
 
 ## Deploy to Github Pages
+
+From the root of the project:
+
+```
+git clone https://github.com/Zequez/cv-maker --branch gh-pages gh-pages
+```
+
+That will create a folder called "gh-pages" on the directory, which is
+ignored by .gitignore.
+
+Then whenever you want to build & deploy just run:
+
+```
+./deploy.sh
+```
+
+No need to mess with subtrees, and I don't need to commit the build to the
+main branch.

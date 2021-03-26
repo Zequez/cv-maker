@@ -55,6 +55,7 @@
   "dependencies": {
     "@radishio/tailwindcss-marker": "^1.0.3",
     "alpinejs": "^2.8.2",
-    "js-yaml": "^4.0.0"
+    "js-yaml": "^4.0.0",
+    "snowpack-plugin-hash": "^0.14.2"
   }
 }
