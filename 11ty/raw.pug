@@ -1,0 +1,125 @@
+---
+layout: layout.liquid
+title: Ezequiel Schwartzman - Curriculum Vitae
+meta:
+  desc: Ezequiel Schwartzman - Curriculum Vitae
+---
+
+include _includes/helpers
+
+main.container.max-w-screen-lg.mx-auto.p-4
+
+  h1.text-4xl.font-bold= cv.name
+  div.text-gray-600= cv.summary
+
+  h2.text-3xl.font-semibold.my-8 Technical Experience
+
+  for sectionContent, sectionName in cv.technicalSummary
+    .ml-4
+      h3.text-2xl.my-2= sectionName
+      - sortedSectionContent = sortByConfidence(sectionContent)
+      for techInfo, techName in sortedSectionContent
+        .ml-4
+          h4.text-xl(class=`${!techInfo.active ? "text-gray-400" : ""}`)
+            = techName
+            span.text-xs= ` (${techInfo.confidence*10}/10)`
+            div.text-xs.mb-2= techInfo.summary
+
+  h2.text-3xl.font-semibold.my-8  Open Source Experience
+
+  .ml-4
+    for project, projectName in cv.openSource
+      - repos = cleanRepo(project.repo)
+        h3.text-2xl.my-2
+          = projectName
+          |
+          |
+          span.text-gray-600.text-xs.italic
+            span= project.from
+            span= project.to ? (project.to === project.from ? '' : `-${project.to}`) : ' (active)'
+        .ml-4
+
+          div
+            span.underline Tech used:
+            |
+            |
+            for tech in project.technologiesUsed
+              span= tech
+          div
+            span.underline Repositories:
+            |
+            |
+            for repo of repos
+              a.text-blue-500(href=repo.link target="_blank")= repo.label
+          div= project.summary
+
+
+  h2.text-3xl.font-semibold.my-8 Companies/Clients Experience
+
+
+  mixin companyBlock(company, companyName, depth)
+    .ml-4
+      h3.text-2xl
+        span= companyName
+        |
+        |
+        span.text-gray-600.text-xs.italic
+          span= company.isClient ? " (client)" : ""
+          |
+          |
+          .italic= `${company.from} - ${company.to}`
+
+      .p-4
+        div
+          span.underline.font-semibold Role:
+          |
+          | #{company.role}
+        div
+          span.underline.font-semibold
+          |
+          | #{company.industry}
+        - projects = company.project ? [company.project] : company.projects || []
+        if projects.length
+          div.underline.font-semibold Projects:
+          ul.ml-8.mb-2
+            for project in projects
+              li.list-disc= project
+
+        div.underline.font-semibold Responsibilities:
+        ul.ml-8.mb-2
+          for resp in company.responsibilities
+            li.list-circle= resp
+        div
+          span.underline.font-semibold Summary:
+          |
+          | #{company.summary}
+
+        if company.subContracted
+          .underline.font-semibold Subcontracted:
+          div
+            for subCompany, subCompanyName in company.subContracted
+              +companyBlock(subCompany, subCompanyName, depth + 1)
+
+
+  for company, companyName in cv.professionalExperience
+    +companyBlock(company, companyName, 0)
+
+  h2.text-3xl.font-semibold.my-8 Education
+
+  .ml-4
+    for edu in cv.education
+      div
+        span.underline.font-semibold #{edu.label}:
+        |
+        | #{edu.institution}
+
+
+  h2.text-3xl.font-semibold.my-8 Links
+
+  .ml-4
+    for cert in cv.certifications
+      div
+        span.underline.font-semibold #{cert.label}:
+        |
+        |
+        a.text-blue-500(href=cert.link target="_blank")= cert.text
