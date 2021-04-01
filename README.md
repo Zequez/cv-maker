@@ -18,6 +18,8 @@ The CV for Akvelon should be accessible at [cv.zequez.space/akvelon](https://cv.
 But then I realized that since I already had all the data now I could make one
 with my own style, so the main CV lives here on the root of the domain: [cv.zequez.space](https://cv.zequez.space)
 
+There is also a [raw version with minimal styling](https://cv.zequez.space/raw) and the full data visible for copy-pasting into a document or printing.
+
 
 ## Development
 
