@@ -9,10 +9,12 @@ include _includes/helpers
 
 main.container.max-w-screen-lg.mx-auto.p-4
 
-  h1.text-4xl.font-bold= cv.name
-  div= cv.summary
+  h1.text-4xl.font-bold.mb-4= cv.name
+  #summary= cv.summary
 
-  h2.text-3xl.font-semibold.my-8 Technical Experience
+  h3.text-4xl
+
+  h2#tech.text-3xl.font-semibold.my-8 Technical Experience
 
   for sectionContent, sectionName in cv.technicalSummary
     .ml-4
@@ -25,7 +27,7 @@ main.container.max-w-screen-lg.mx-auto.p-4
             span.text-xs= ` (${techInfo.confidence*10}/10)`
           div.text-xs.mb-2= techInfo.summary
 
-  h2.text-3xl.font-semibold.my-8  Open Source Experience
+  h2#open-source.text-3xl.font-semibold.my-8  Open Source Experience
 
   .ml-4
     for project, projectName in cv.openSource
@@ -43,8 +45,7 @@ main.container.max-w-screen-lg.mx-auto.p-4
             span.underline Tech used:
             |
             |
-            for tech in project.technologiesUsed
-              span= tech
+            = project.technologiesUsed.join(', ')
           div
             span.underline Repositories:
             |
@@ -57,7 +58,7 @@ main.container.max-w-screen-lg.mx-auto.p-4
           div= project.summary
 
 
-  h2.text-3xl.font-semibold.my-8 Companies/Clients Experience
+  h2#clients.text-3xl.font-semibold.my-8 Companies/Clients Experience
 
 
   mixin companyBlock(company, companyName, depth)
@@ -107,7 +108,7 @@ main.container.max-w-screen-lg.mx-auto.p-4
   for company, companyName in cv.professionalExperience
     +companyBlock(company, companyName, 0)
 
-  h2.text-3xl.font-semibold.my-8 Education
+  h2#education.text-3xl.font-semibold.my-8 Education
 
   .ml-4
     for edu in cv.education
@@ -117,7 +118,7 @@ main.container.max-w-screen-lg.mx-auto.p-4
         | #{edu.institution}
 
 
-  h2.text-3xl.font-semibold.my-8 Links
+  h2#links.text-3xl.font-semibold.my-8 Links
 
   .ml-4
     for cert in cv.certifications
