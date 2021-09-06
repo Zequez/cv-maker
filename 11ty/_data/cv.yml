@@ -467,11 +467,35 @@ technicalSummary:
         Kanban boards functionalities.
 
 openSource:
+  Agent Centric Prototyping Service:
+    repo: https://github.com/Zequez/agent-centric-prototyping-service
+    from: 2021
+    summary: |
+      Barebones server to use for agent-centric app prototyping that after maturation can
+      be progressively adapted to use more advanced protocols such as Holochain,
+      Secure Scuttlebutt, IPFS, etc.
+    technologiesUsed:
+      - TypeScript
+      - Deno
+      - VM server management
+      - CSS / Tailwind
+  The Offering Game:
+    repo: https://github.com/Zequez/the-offering-game
+    from: 2021
+    summary: |
+      An experimental game to encourage exchange of goods and services between people.
+    technologiesUsed:
+      - Elm
+      - Eleventy
+      - Vite
+      - CSS / Tailwind
+      - HTML / Pug
+      - Agent Centric Prototyping Service
   Santuario:
     repo: https://github.com/Zequez/santuario
     from: 2021
     summary: |
-      This is my main focus at the moment; it's not a single project but a sort of
+      It's not a single project but a sort of
       ecosystem that I'm building. The idea is to create tools for communities as if
       we all lived in a sanctuary; how would we organize? Currently made with Elm
       and experimenting with a Kinto backend for maximum flexibility
