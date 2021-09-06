@@ -652,6 +652,36 @@ openSource:
       - Canvas
 
 professionalExperience:
+  Ubiquity DAO:
+    isClient: true
+    industry: Decentralized Finances
+    project: Ubiquity Algorithmic Dollar
+    role: Associate Developer
+    from: Jul 2021
+    summary: Help with building the dashboard, docs web, monitoring scripts, anything web-related and research.
+    responsibilities:
+      - Identify the tasks that need to be done
+      - Schedule a weekly timeblocks to work on them
+      - Maintain regular communication with the rest of the team
+      - Create pull request with new features
+      - Organize standup meetings
+  Orion Black:
+    isClient: true
+    industry: Data Mining
+    project: LinkedIn Sales Navigator Scraper
+    role: Web developer
+    from: May 2021
+    to: Jun 2021
+    summary: |
+      The needed someone to help them optimize the front end development environment
+      for the Chrome extension. Migrate from a Webpack-based build to a Parcel-one
+      with hot-reloading and some other nice features.
+    responsibilities:
+      - Examine the needs, do the work on my own, log the progress, share on Github, make PR.
+    technologiesUsed:
+      - Parcel
+      - TypeScript
+      - CSS
   Covid Heroes:
     isClient: true
     industry: Social Media Marketing
